@@ -16,10 +16,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
+      - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v3
+        with:
+          node-version: "16"
       - name: Install dependencies
         shell: bash
         run: npm install
@@ -29,7 +31,7 @@ jobs:
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: "dist/"
+          path: "dist"
 
   deploy:
     needs: build
